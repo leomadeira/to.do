@@ -1,7 +1,5 @@
 import { useState } from 'react'
-
 import '../styles/tasklist.scss'
-
 import { FiTrash, FiCheckSquare } from 'react-icons/fi'
 
 interface Task {
@@ -21,11 +19,11 @@ export function TaskList() {
       id: Math.random(),
       title: newTaskTitle,
       isComplete: false
-    }
+    };
 
     setTasks(oldState => [...oldState, newTask])
     setNewTaskTitle('');
-  }
+  };
 
   function handleToggleTaskCompletion(id: number) {
     const newTasks = tasks.map(task => task.id === id ? {
@@ -34,13 +32,12 @@ export function TaskList() {
     } : task);
 
     setTasks(newTasks)
-  }
+  };
 
   function handleRemoveTask(id: number) {
     const filterredTasks = tasks.filter(task => task.id !== id)
-
     setTasks(filterredTasks)
-  }
+  };
 
   return (
     <section className="task-list container">
@@ -81,10 +78,10 @@ export function TaskList() {
                 <FiTrash size={16}/>
               </button>
             </li>
-          ))}
+          ))};
           
         </ul>
       </main>
     </section>
-  )
-}
+  );
+};
