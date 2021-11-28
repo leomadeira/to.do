@@ -11,20 +11,16 @@ interface Task {
 export function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState('');
-
   function handleCreateNewTask() {
-    if(!newTaskTitle){ return; } //Esse comando não vai permitir que o cliente crie caixas vazias
-
+    if(!newTaskTitle){ return; } //Esse comando não vai permitir que o cliente crie caixas vazia    
     const newTask = {
       id: Math.random(),
       title: newTaskTitle,
       isComplete: false
     };
-
     setTasks(oldState => [...oldState, newTask])
     setNewTaskTitle('');
   };
-
   function handleToggleTaskCompletion(id: number) {
     const newTasks = tasks.map(task => task.id === id ? {
       ...task,
@@ -33,17 +29,14 @@ export function TaskList() {
 
     setTasks(newTasks)
   };
-
   function handleRemoveTask(id: number) {
     const filterredTasks = tasks.filter(task => task.id !== id)
     setTasks(filterredTasks)
   };
-
   return (
     <section className="task-list container">
       <header>
         <h2>Minhas tasks</h2>
-
         <div className="input-group">
           <input 
             type="text" 
@@ -56,7 +49,6 @@ export function TaskList() {
           </button>
         </div>
       </header>
-
       <main>
         <ul>
           {tasks.map(task => (
@@ -73,13 +65,11 @@ export function TaskList() {
                 </label>
                 <p>{task.title}</p>
               </div>
-
               <button type="button" data-testid="remove-task-button" onClick={() => handleRemoveTask(task.id)}>
                 <FiTrash size={16}/>
               </button>
             </li>
-          ))};
-          
+          ))};     
         </ul>
       </main>
     </section>
